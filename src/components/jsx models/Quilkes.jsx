@@ -66,7 +66,6 @@ export function Abdulmatin(props) {
         ref={groupRef}
         scale={7.4}
         position={[-2, -viewport.height * 2 - 1.8, 0]}
-        // rotation-y={Math.PI - 1.2}
       >
         <mesh
           name="Abdulmatin"
