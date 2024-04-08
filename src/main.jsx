@@ -5,7 +5,9 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Suspense fallback={null}>
+    <Suspense
+      fallback={<div className="h-screen w-full bg-red-800">Loading....</div>}
+    >
       <App />
     </Suspense>
   </React.StrictMode>

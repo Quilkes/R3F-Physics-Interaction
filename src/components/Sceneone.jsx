@@ -1,12 +1,12 @@
-import React from "react";
-import { Intro } from "./jsx models/Intro";
-import LightSabre from "./jsx models/LightSabre";
+import React, { useEffect, useRef, useState } from "react";
+import { Abdulmatin } from "./jsx models/Quilkes";
 
-export default function Sceneone({ section }) {
+export default function Sceneone(props) {
+  const { section, onSectionChange } = props;
+
   return (
     <>
-      <LightSabre section={section} />
-      <Intro />
+      <Abdulmatin page={section} />
     </>
   );
 }

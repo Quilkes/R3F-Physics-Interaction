@@ -6,6 +6,7 @@ import Footer from "./components/jsx models/Footer";
 import { useState } from "react";
 import { ScrollManager } from "./components/ScrollManager";
 import Scenetwo from "./components/Scenetwo";
+import { Perf } from "r3f-perf";
 
 function App() {
   const [section, setSection] = useState(0);
@@ -13,6 +14,7 @@ function App() {
     <>
       <Header />
       <Canvas shadows dpr={1} camera={{ fov: 55 }} className="w-full h-screen">
+        <Perf position="top-left" />
         <ScrollControls pages={4}>
           <ScrollManager section={section} onSectionChange={setSection} />
           <Scroll>

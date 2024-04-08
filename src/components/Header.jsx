@@ -11,10 +11,6 @@ export default function Header() {
     >
       <section className="h-full w-full lg:w-[90%] flex justify-between text-xl">
         <div className="cursor-pointer">Q</div>
-        <div className="cursor-pointer hover:text-slate-200">
-          <div className="pb-1">MENU</div>
-          <div className="w-full h-[0.10rem] bg-white"></div>
-        </div>
       </section>
     </motion.header>
   );

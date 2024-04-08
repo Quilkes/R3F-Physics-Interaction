@@ -2,9 +2,11 @@ import { useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
+import { useThree } from "@react-three/fiber";
 
 export const ScrollManager = (props) => {
   const { section, onSectionChange } = props;
+  const { viewport } = useThree();
 
   const data = useScroll();
   const lastScroll = useRef(0);
@@ -19,7 +21,7 @@ export const ScrollManager = (props) => {
   }, []);
 
   useEffect(() => {
-    // Listen for section changes and animate scrolling
+    // Listen for section changes and animate scrolling if true
     if (!isAnimating.current) {
       scrollToSection();
     }
@@ -41,18 +43,9 @@ export const ScrollManager = (props) => {
     });
   };
 
-  //   useEffect(() => {
-  //     gsap.to(data.el, {
-  //       duration: 1,
-  //       scrollTop: section * data.el.clientHeight,
-  //       onStart: () => {
-  //         isAnimating.current = true;
-  //       },
-  //       onComplete: () => {
-  //         isAnimating.current = false;
-  //       },
-  //     });
-  //   }, [section]);
+  window.addEventListener("scroll", () => {
+    console.log(data.scroll.current);
+  });
 
   useFrame(() => {
     if (isAnimating.current) {
