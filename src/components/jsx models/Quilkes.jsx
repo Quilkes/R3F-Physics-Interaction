@@ -29,22 +29,27 @@ export function Abdulmatin(props) {
   useGSAP(
     () => {
       if (page === 1) {
-        gsap.to(groupRef.current.rotation, {
-          y: Math.PI / 2 + 2,
-          duration: 1.2,
-          ease: "power1.inOut",
-          delay: 0.1,
-          onUpdate: () => {
-            camera.lookAt(0, 0, 0);
+        gsap.fromTo(
+          groupRef.current.rotation,
+          {
+            y: Math.PI / 2 + 0.3,
           },
-        });
+          {
+            y: Math.PI / 2 + 2,
+            duration: 1.2,
+            ease: "power1.inOut",
+            delay: 0.1,
+            onUpdate: () => {
+              camera.lookAt(0, 0, 0);
+            },
+          }
+        );
         console.log("rotation");
       } else {
         gsap.to(groupRef.current.rotation, {
           y: Math.PI / 2 + 0.3,
           duration: 1,
           ease: "power1.inOut",
-          delay: 0.5,
           onUpdate: () => {
             camera.lookAt(0, 0, 0);
           },
