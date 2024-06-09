@@ -1,8 +1,0 @@
-uniform float uGlowRadius;
-uniform float uGlowIntensity;
-uniform vec3 uColor;
-
-void main() {
-
-    gl_FragColor = vec4(1.0);
-}
