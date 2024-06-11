@@ -1,5 +1,4 @@
 import { Scroll } from "@react-three/drei";
-import { useThree } from "@react-three/fiber";
 import PageOne from "./components/PageOne";
 import PageTwo from "./components/PageTwo";
 import PageThree from "./components/PageThree";
@@ -13,11 +12,8 @@ import { Tunnel } from "./components/JSX_model/Tunnel";
 import { Bowl } from "./components/JSX_model/Bowl";
 
 export default function App() {
-  const { viewport } = useThree();
-
   return (
     <>
-      {/* <OrbitControls /> */}
       <ambientLight intensity={0.5} />
       <spotLight
         intensity={200}

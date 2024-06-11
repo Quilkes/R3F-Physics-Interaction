@@ -58,7 +58,6 @@ export const ScrollManager = (props) => {
             onSectionChange(1); // Scroll to section 1 from section 0
           }, 1000);
           isBallRolling.current = true;
-          console.log("true");
         } else {
           onSectionChange(1);
         }
