@@ -1,15 +1,11 @@
 import React from "react";
 import useStore from "../../store/Store";
-import { useControls } from "leva";
 
 export default function Header() {
   const section = useStore((state) => state.section);
 
   return (
     <>
-      {/* <section className="fixed top-0 left-0 z-50 grid bg-[#55ace2] h-16 w-full place-content-center">
-        <img src="img/logo.png" alt="my logo" className="w-20" />
-      </section> */}
       <section className="fixed top-0 right-0 z-50 flex flex-col items-center w-32 h-full pt-8 cursor-pointer ">
         <div className="flex flex-col justify-center w-10 h-10 gap-1">
           <div className="w-4/5 h-[0.35rem] bg-black rounded-sm"></div>

@@ -22,10 +22,10 @@ export default function Footer() {
           <p className="font-bold">Twitter</p>
           <a
             className="text-xs hover:underline"
-            href="https://github.com/Quilkes?tab=repositories"
+            href="https://x.com/Abdulmatin67990"
             target="_blank"
           >
-            https://x.com/Abdulmatin67990
+            https://x.com/quilkes
           </a>
         </div>
         <div>
@@ -35,7 +35,7 @@ export default function Footer() {
             href="https://www.linkedin.com/in/abdulmatin-adekola-63a58a254/"
             target="_blank"
           >
-            https://github.com/quilkes
+            https://www.linkedin.com/in/quilkes
           </a>
         </div>
       </div>

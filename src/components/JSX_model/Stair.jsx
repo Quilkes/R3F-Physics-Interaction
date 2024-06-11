@@ -21,11 +21,9 @@ export function Stair(props) {
           castShadow
           receiveShadow
           geometry={nodes.Base.geometry}
-          material={materials["Material.001"]}
+          material={materials.Material}
           position={[-0.449, 2.471, -0.737]}
-        >
-          <meshStandardMaterial color={"#17a8ff"} toneMapped={false} />
-        </mesh>
+        />
       </group>
     </RigidBody>
   );

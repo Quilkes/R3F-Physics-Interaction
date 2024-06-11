@@ -13,6 +13,7 @@ export const ScrollManager = (props) => {
   const data = useScroll();
   const lastScroll = useRef(0);
   const isAnimating = useRef(false);
+  const isBallRolling = useRef(false);
 
   // Adding CSS classes to the scroll container due to weird css conflict
   data.fill.classList.add("top-0");
@@ -51,7 +52,16 @@ export const ScrollManager = (props) => {
     // Handling scroll down event
     if (scrollTop > lastScroll.current) {
       if (currentSection === 0 && section === 0) {
-        onSectionChange(1); // Scroll to section 1 from section 0
+        if (!isBallRolling.current && currentSection === 0) {
+          // Slow down the scroll
+          setTimeout(() => {
+            onSectionChange(1); // Scroll to section 1 from section 0
+          }, 1000);
+          isBallRolling.current = true;
+          console.log("true");
+        } else {
+          onSectionChange(1);
+        }
       } else if (currentSection === 1 && section === 1) {
         onSectionChange(2); // Scroll to section 2 from section 1
       }

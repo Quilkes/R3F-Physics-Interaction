@@ -7,30 +7,34 @@ import { useGLTF } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { RigidBody } from "@react-three/rapier";
 
-export function Rack(props) {
-  const { nodes, materials } = useGLTF("models/rack.glb");
+export function Bowl(props) {
+  const { nodes, materials } = useGLTF("models/bowl.glb");
   const { viewport } = useThree();
 
   return (
     <RigidBody
       type="fixed"
+      friction={20}
       colliders="trimesh"
-      position={[0.4, -viewport.height * 1.6, -0.03]}
-      rotation={[0, -Math.PI / 2, 0]}
-      restitution={-7}
-      friction={0.2}
+      position={[-1.3, -viewport.height * 2.2526, 5]}
     >
-      <group {...props} dispose={null} scale={[1.2, 0.9, 0.9]}>
+      <group {...props} dispose={null} scale={0.5}>
         <mesh
           castShadow
           receiveShadow
-          geometry={nodes.Rack.geometry}
+          geometry={nodes.Plane001.geometry}
           material={materials.Material}
-          rotation={[Math.PI / 2, 0, 0]}
+        />
+        <mesh
+          castShadow
+          receiveShadow
+          geometry={nodes.Sphere.geometry}
+          material={materials.Material}
+          position={[0, -0.52, 0]}
         />
       </group>
     </RigidBody>
   );
 }
 
-useGLTF.preload("models/rack.glb");
+useGLTF.preload("models/bowl.glb");
