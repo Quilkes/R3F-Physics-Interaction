@@ -7,17 +7,16 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { useThree } from "@react-three/fiber";
 import { RigidBody } from "@react-three/rapier";
+import { useControls } from "leva";
 
 export function Wall(props) {
   const { nodes, materials } = useGLTF("models/wall.glb");
   const { viewport } = useThree();
 
   return (
-    // <RigidBody>
     <group
       {...props}
       dispose={null}
-      color={"#17a8ff"}
       rotation-y={-Math.PI / 2}
       position-y={-viewport.height * 1}
     >
@@ -29,10 +28,9 @@ export function Wall(props) {
         rotation={[0, 0, -Math.PI / 2]}
         scale={[viewport.height * 3, 1, viewport.width]}
       >
-        <meshStandardMaterial color={"#17a8ff"} toneMapped={false} />
+        <meshStandardMaterial color={"#37b2c7"} toneMapped={false} />
       </mesh>
     </group>
-    // </RigidBody>
   );
 }
 

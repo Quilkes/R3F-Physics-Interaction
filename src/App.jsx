@@ -1,56 +1,62 @@
-import { Scroll } from "@react-three/drei";
-import PageOne from "./components/PageOne";
-import PageTwo from "./components/PageTwo";
-import PageThree from "./components/PageThree";
-import { Ball } from "./components/JSX_model/Ball";
-import { Stair } from "./components/JSX_model/Stair";
-import { Wall } from "./components/JSX_model/Wall";
-import { Rack } from "./components/JSX_model/Rack";
-import PhysicsOne from "./components/PhysicsOne";
-import PhysicsThree from "./components/PhysicsThree";
-import { Tunnel } from "./components/JSX_model/Tunnel";
-import { Bowl } from "./components/JSX_model/Bowl";
+import { Loader, ScrollControls } from "@react-three/drei";
+import Header from "./components/Header";
+import { Canvas } from "@react-three/fiber";
+import { ScrollManager } from "./components/ScrollManager";
+import { Suspense, useEffect, useState } from "react";
+import { Physics } from "@react-three/rapier";
+import Experience from "./components/Experience";
+import Footer from "./components/Footer";
+import Fallback from "./components/Fallback";
 
 export default function App() {
-  return (
-    <>
-      <ambientLight intensity={0.5} />
-      <spotLight
-        intensity={200}
-        color={"white"}
-        distance={50}
-        position={[8.27, 3, 6]}
-      />
-      <directionalLight
-        position={[7.7, 3.5, 6]}
-        color={"#d4d6c3"}
-        castShadow
-        intensity={3}
-        shadow-mapSize={[1024, 1024]}
-      />
-      <rectAreaLight
-        intensity={3}
-        color={"#d4d6c3"}
-        position={[3.9, 1.74, 13.8]}
-        rotation-x={-1.54}
-        width={10}
-      />
+  const [viewport, setViewport] = useState({
+    isLaptop: window.innerWidth >= 1020,
+  });
 
-      <PhysicsOne />
-      <PhysicsThree />
-      <Wall />
-      <Scroll>
-        <Ball />
-        <Stair />
-        <Rack />
-        <Tunnel />
-        <Bowl />
-      </Scroll>
-      <Scroll html>
-        <PageOne />
-        <PageTwo />
-        <PageThree />
-      </Scroll>
+  // Function to handle viewport changes =====>
+  const handleResize = () => {
+    setViewport({
+      isLaptop: window.innerWidth >= 1020,
+    });
+  };
+
+  // Set up event listener for resize events =====>
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize); //clean up
+  }, []);
+
+  return viewport.isLaptop ? (
+    <>
+      <Header />
+      <Canvas dpr={1} camera={{ fov: 20, position: [0, 0, 20] }} shadows>
+        <ScrollControls pages={3}>
+          <ScrollManager />
+          <Suspense fallback={null}>
+            <Physics gravity={[0, -9.08, 0]}>
+              <Experience />
+            </Physics>
+          </Suspense>
+        </ScrollControls>
+      </Canvas>
+      <Loader
+        innerStyles={{
+          width: "100vh",
+          borderRadius: "5px",
+        }}
+        barStyles={{
+          backgroundColor: "#17a8ff",
+          height: "0.2rem",
+        }}
+        dataStyles={{
+          fontSize: "18px",
+          paddingBottom: "5px",
+        }}
+        dataInterpolation={(data) => `${data.toFixed(0)}%`}
+      />
+      <Footer />
     </>
+  ) : (
+    <Fallback />
   );
 }

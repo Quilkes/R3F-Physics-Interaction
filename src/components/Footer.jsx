@@ -39,9 +39,6 @@ export default function Footer() {
           </a>
         </div>
       </div>
-      <div className="flex flex-col items-center w-1/5 h-full">
-        <p className="h-full px-10 pt-2 text-white bg-red-600">Follow me</p>
-      </div>
     </footer>
   );
 }

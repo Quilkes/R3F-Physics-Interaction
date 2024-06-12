@@ -1,47 +1,56 @@
-import { ScrollControls } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import React, { Suspense, useEffect, useState } from "react";
-import { ScrollManager } from "./ScrollManager";
-import { Physics } from "@react-three/rapier";
-import Header from "./Header";
-import Footer from "./Footer";
-import Fallback from "./Fallback";
-import App from "../App";
+import { Scroll } from "@react-three/drei";
+import { Wall } from "./JSX_model/Wall";
+import PhysicsOne from "./PhysicsOne";
+import PhysicsThree from "./PhysicsThree";
+import { Ball } from "./JSX_model/Ball";
+import { Stair } from "./JSX_model/Stair";
+import { Rack } from "./JSX_model/Rack";
+import { Tunnel } from "./JSX_model/Tunnel";
+import { Bowl } from "./JSX_model/Bowl";
+import PageOne from "./PageOne";
+import PageTwo from "./PageTwo";
+import PageThree from "./PageThree";
 
 export default function Experience() {
-  const [viewport, setViewport] = useState({
-    isLaptop: window.innerWidth >= 1020,
-  });
-
-  // Function to handle viewport changes =====>
-  const handleResize = () => {
-    setViewport({
-      isLaptop: window.innerWidth >= 1020,
-    });
-  };
-
-  // Set up event listener for resize events =====>
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize); //clean up
-  }, []);
-
-  return viewport.isLaptop ? (
+  return (
     <>
-      <Header />
-      <Canvas dpr={1} camera={{ fov: 20, position: [0, 0, 20] }} shadows>
-        <ScrollControls pages={3}>
-          <ScrollManager />
-          <Suspense>
-            <Physics gravity={[0, -9.08, 0]}>
-              <App />
-            </Physics>
-          </Suspense>
-        </ScrollControls>
-      </Canvas>
-      <Footer />
+      <ambientLight intensity={0.5} />
+      <spotLight
+        intensity={200}
+        color={"white"}
+        distance={50}
+        position={[8.27, 3, 6]}
+      />
+      <directionalLight
+        position={[7.7, 3.5, 6]}
+        color={"#d4d6c3"}
+        castShadow
+        intensity={3}
+        shadow-mapSize={[1024, 1024]}
+      />
+      <rectAreaLight
+        intensity={3}
+        color={"#d4d6c3"}
+        position={[3.9, 1.74, 13.8]}
+        rotation-x={-1.54}
+        width={10}
+      />
+
+      <PhysicsOne />
+      <PhysicsThree />
+      <Wall />
+      <Scroll>
+        <Ball />
+        <Stair />
+        <Rack />
+        <Tunnel />
+        <Bowl />
+      </Scroll>
+      <Scroll html>
+        <PageOne />
+        <PageTwo />
+        <PageThree />
+      </Scroll>
     </>
-  ) : (
-    <Fallback />
   );
 }
