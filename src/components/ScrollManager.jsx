@@ -5,21 +5,21 @@ import { useEffect, useRef } from "react";
 import useStore from "../../store/Store";
 
 export const ScrollManager = (props) => {
-  // Accessing current section and section setter from the store
+  // Accessing current section and section setter from the store  =====>
   const section = useStore((state) => state.section);
   const onSectionChange = useStore((state) => state.setSection);
 
-  // Initialize the scroll data and references for last scroll position and animation state
+  // Initialize the scroll data and references for last scroll position and animation state  =====>
   const data = useScroll();
   const lastScroll = useRef(0);
   const isAnimating = useRef(false);
   const isBallRolling = useRef(false);
 
-  // Adding CSS classes to the scroll container due to weird css conflict
+  // Adding CSS classes to the scroll container due to weird css conflict  =====>
   data.fill.classList.add("top-0");
   data.fill.classList.add("absolute");
 
-  // Side-effect to handle scrolling to the correct section when section state changes
+  // Side-effect to handle scrolling to the correct section when section state changes  =====>
   useEffect(() => {
     gsap.to(data.el, {
       duration: 1, // Animation duration
@@ -33,7 +33,7 @@ export const ScrollManager = (props) => {
     });
   }, [section]);
 
-  // useFrame hook to handle smooth scrolling based on user interaction
+  // useFrame hook to handle smooth scrolling based on user interaction  =====>
   useFrame(() => {
     if (isAnimating.current) {
       lastScroll.current = data.scroll.current; // Update last scroll position if animating

@@ -15,6 +15,7 @@ export function Ball(props) {
   const hasAppliedImpulse = useRef(false);
 
   useFrame(() => {
+    // Applying Impulse onScroll  =====>
     const scrollOffset = data.scroll.current;
     if (scrollOffset > 0.001 && !hasAppliedImpulse.current) {
       ballRef.current.applyImpulse({ x: 0.1, y: 0, z: 0 }, true);

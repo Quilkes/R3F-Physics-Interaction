@@ -2,6 +2,7 @@ import React from "react";
 import useStore from "../../store/Store";
 
 export default function Header() {
+  // Accessing current section and section setter from the store  =====>
   const section = useStore((state) => state.section);
 
   return (
